@@ -2,22 +2,20 @@
 
 import UpdateProductForm from "@/components/forms/UpdateProductForm/UpdataProductForm";
 import useAuthInfo from "@/components/hooks/useAuthInfo";
-import { TProductIdProps } from "@/types/product";
 import Link from "next/link";
 
-const Edit = ({ params }: TProductIdProps) =>
+const Edit = () =>
 {
-   const { productId } = params;
    const { user, token } = useAuthInfo();
 
-   if (!token || (user?.sub !== "SuperAdmin"))
+   if (!token || (user?.role !== "SuperAdmin"))
    {
       return <Link href='/' replace={true} />
    }
 
    return (
       <>
-         <UpdateProductForm productId={productId} />
+         <UpdateProductForm />
       </>
    )
 }

@@ -16,10 +16,10 @@ import styles from './styles.module.css';
 
 const { UpdateForm } = styles;
 
-const UpdateProductForm = ({ productId }: { productId?: string }) =>
+const UpdateProductForm = () =>
 {
    const { token } = useAppSelector(state => state.auth);
-   const { dispatch, productInfo, loading, error } = useProductDetails(productId!);
+   const { dispatch, productInfo, loading, error } = useProductDetails();
    const { register, handleSubmit, reset, formState: { errors } } = useForm<TProduct>();
    const router = useRouter()
 
@@ -39,14 +39,17 @@ const UpdateProductForm = ({ productId }: { productId?: string }) =>
 
    const onSubmit: SubmitHandler<TProduct> = (data) =>
    {
+      const { quantity } = data;
+      const convertedQuantity = Number(Math.floor(quantity));
+
       if ((productInfo && productInfo["_id"]))
       {
          const productWithToken: TProduct & { token: TToken } = {
             ...data,
+            quantity: convertedQuantity,
             _id: productInfo["_id"],
             token,
          };
-
          dispatch(actUpdateProduct(productWithToken))
             .unwrap()
             .then(() => reset())

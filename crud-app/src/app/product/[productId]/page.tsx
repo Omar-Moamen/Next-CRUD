@@ -13,15 +13,13 @@ import Loading from "@/components/feedback/Loading/Loading";
 import useAuthInfo from "@/components/hooks/useAuthInfo";
 import ErrorFeedback from "@/components/feedback/ErrorFeedback/ErrorFeedback";
 import Link from "next/link";
-import { TProductIdProps } from "@/types/product";
 
-const ProductId = ({ params }: TProductIdProps) =>
+const ProductId = () =>
 {
-   const { productId } = params;
-   const { productInfo, loading, error } = useProductDetails(productId);
+   const { productInfo, loading, error } = useProductDetails();
    const { token, user } = useAuthInfo();
 
-   if (!token || (user?.sub !== "Admin" && user?.sub !== "SuperAdmin"))
+   if (!token || (user?.role !== "Admin" && user?.role !== "SuperAdmin"))
    {
       return <Link href="/" replace={true} />
    }

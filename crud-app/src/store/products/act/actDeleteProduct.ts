@@ -11,9 +11,7 @@ export const actDeleteProduct = createAsyncThunk('products/actDeleteProduct',
       try
       {
          await axios.delete(`http://localhost:8080/${_id}`, {
-            headers: {
-               Authorization: token,
-            }
+            headers: { Authorization: token }
          });
 
          return _id;

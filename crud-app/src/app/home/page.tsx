@@ -14,6 +14,13 @@ import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
 import { actGetAllProducts } from "@/store/products/act/actGetAllProducts";
 import { useEffect } from "react";
 import Loading from "@/components/feedback/Loading/Loading";
+import AddProductModal from "@/components/AddProductModal/AddProductModal";
+import { grey } from "@mui/material/colors";
+
+const thOverrides = {
+  fontWeight: "bold",
+  color: "black"
+};
 
 const Home = () =>
 {
@@ -27,22 +34,22 @@ const Home = () =>
     {
       dispatch(actGetAllProducts(token));
     }
-    // promise.abort() will cancel the request if a user bounce occurred
   }, [dispatch, token]);
 
   return (
     <>
       <Container sx={{ height: "calc(100vh - 160px)" }} maxWidth="lg" >
         <Loading status={loading} error={error}>
-          <TableContainer >
+          <AddProductModal />
+          <TableContainer sx={{ mt: "20px" }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              <TableHead sx={{ bgcolor: "#c6c6c6" }}>
                 <TableRow>
-                  <TableCell>#</TableCell>
-                  <TableCell align="center">Title</TableCell>
-                  <TableCell align="center">Price</TableCell>
-                  <TableCell align="center">Quantity</TableCell>
-                  <TableCell align="center">Operations</TableCell>
+                  <TableCell sx={thOverrides}>#</TableCell>
+                  <TableCell sx={thOverrides} align="center">Title</TableCell>
+                  <TableCell sx={thOverrides} align="center">Price</TableCell>
+                  <TableCell sx={thOverrides} align="center">Quantity</TableCell>
+                  <TableCell sx={thOverrides} align="center">Operations</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

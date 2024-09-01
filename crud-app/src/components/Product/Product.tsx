@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
 import { actDeleteProduct } from "@/store/products/act/actDeleteProduct";
+import { grey } from "@mui/material/colors";
 
 type TProps = TProduct & { idx?: number };
 
@@ -22,7 +23,11 @@ const Product = ({ _id, title, price, quantity, idx }: TProps) =>
 
    return (
       <>
-         <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+         <TableRow sx={{
+            '&:last-child td, &:last-child th': { border: 0 },
+            '&:nth-of-type(even)': { bgcolor: grey[900] }
+         }}
+         >
             <TableCell className={orderCell} scope="row"> {`#${idx! + 1}`}</TableCell>
             <TableCell className={titleCell} align="center">{title}</TableCell>
             <TableCell align="center">&#36;{price}</TableCell>
@@ -41,7 +46,7 @@ const Product = ({ _id, title, price, quantity, idx }: TProps) =>
                      text="Edit"
                      title="You don't have this permission"
                      placement="top"
-                     disabled={token && user && user.sub === "SuperAdmin" ? false : true}
+                     disabled={token && user && user.role === "SuperAdmin" ? false : true}
                      color="success"
                      onClick={() => router.push(`/product/${_id}/edit`)}
                   />
@@ -49,7 +54,7 @@ const Product = ({ _id, title, price, quantity, idx }: TProps) =>
                      text="Delete"
                      title="You don't have this permission"
                      placement="top"
-                     disabled={token && user && user.sub === "SuperAdmin" ? false : true}
+                     disabled={token && user && user.role === "SuperAdmin" ? false : true}
                      color="error"
                      onClick={() => dispatch(actDeleteProduct({ _id, token }))}
                   />

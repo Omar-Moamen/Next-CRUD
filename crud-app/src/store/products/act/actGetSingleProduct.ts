@@ -9,14 +9,13 @@ export const actGetSingleProduct = createAsyncThunk("products/actGetSingleProduc
    async (productIdWithToken: TProductIdWithToken, thunkAPI) =>
    {
       const { _id, token } = productIdWithToken;
-      const { rejectWithValue, signal } = thunkAPI;
+      const { rejectWithValue } = thunkAPI;
       try
       {
          const response = await axios.get(`http://localhost:8080/${_id}`, {
             headers: {
                Authorization: token,
             },
-            signal,
          });
          return response.data;
       }

@@ -8,6 +8,7 @@ import { loginSchema } from "@/components/validations/loginSchema";
 import useAuthInfo from "@/components/hooks/useAuthInfo";
 import { actAuthLogin } from "@/store/auth/act/actAuthLogin";
 import { clearAuthUI } from "@/store/auth/authSlice";
+import { useRouter, useSearchParams } from "next/navigation";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import ErrorFeedback from "@/components/feedback/ErrorFeedback/ErrorFeedback";
 import { Alert, Box, Button, CircularProgress, TextField } from "@mui/material"
@@ -15,7 +16,6 @@ import Link from "next/link";
 import Form from "../Form/Form";
 // Styles
 import styles from './styles.module.css';
-import { useRouter, useSearchParams } from "next/navigation";
 
 
 

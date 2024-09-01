@@ -12,19 +12,20 @@ export const actUpdateProduct = createAsyncThunk('products/edit',
    async (productWithToken: TProductWithToken, thunkAPI) =>
    {
       const { token, _id, title, price, quantity } = productWithToken;
-      const { rejectWithValue, signal } = thunkAPI;
+      const { rejectWithValue } = thunkAPI;
 
       try
       {
-         const response = await axios.put(`http://localhost:8080/${_id}`, {},
+         const response = await axios.put(`http://localhost:8080/${_id}`,
+            {
+               title,
+               price,
+               quantity
+            },
             {
                headers: {
-                  Authorization: token,
-                  title,
-                  price,
-                  quantity
-               },
-               signal,
+                  Authorization: token
+               }
             }
 
          )
