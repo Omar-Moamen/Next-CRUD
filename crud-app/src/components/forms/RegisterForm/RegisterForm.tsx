@@ -8,13 +8,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { actAuthRegister } from '../../../store/auth/act/actAuthRegister';
 import useAuthInfo from '@/components/hooks/useAuthInfo';
 import { clearAuthUI } from '@/store/auth/authSlice';
+import { useRouter } from 'next/navigation';
+import Form from '../Form/Form';
 import ErrorFeedback from '@/components/feedback/ErrorFeedback/ErrorFeedback';
 import PasswordInput from '../PasswordInput/PasswordInput';
 import { Box, Button, CircularProgress, MenuItem, TextField } from "@mui/material"
 // Styles
 import styles from './styles.module.css';
-import Form from '../Form/Form';
-import { useRouter } from 'next/navigation';
 
 
 // Infer the type from typeof signUpSchema 

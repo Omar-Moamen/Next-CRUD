@@ -18,14 +18,17 @@ type TLottieHandlerProps = {
    width?: string;
 }
 
-const { lottieWrapper } = styles;
+const { lottieWrapper, loadingStyles } = styles;
 
-const LottieHandler = ({ type, message, width }: TLottieHandlerProps) =>
+const LottieHandler = ({ type, message, width = "250px" }: TLottieHandlerProps) =>
 {
    const lottie = lottieHandlerMap[type];
 
    return (
-      <Box className={lottieWrapper}>
+      <Box className={type === "loading" ?
+         `${loadingStyles} ${lottieWrapper}` :
+         `${lottieWrapper}`}
+      >
          <Lottie animationData={lottie} style={{ width: width }} />
          {
             message &&

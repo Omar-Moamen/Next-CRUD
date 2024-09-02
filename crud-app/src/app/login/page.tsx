@@ -1,9 +1,13 @@
 import LoginForm from '@/components/forms/LoginForm/LoginForm'
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute'
 
 const Login = () =>
 {
+
    return (
-      <LoginForm />
+      <ProtectedRoute>
+         <LoginForm />
+      </ProtectedRoute>
    )
 }
 

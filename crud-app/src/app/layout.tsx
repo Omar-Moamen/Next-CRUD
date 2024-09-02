@@ -1,7 +1,7 @@
-import ReduxProvider from "@/components/ReduxProvider/ReduxProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
+import StoreProvider from "@/components/StoreProvider/StoreProvider";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/theme/theme";
@@ -26,7 +26,8 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>)
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>
+
+        <StoreProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
               <CssBaseline />
@@ -36,7 +37,7 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>)
               </Box>
             </ThemeProvider>
           </AppRouterCacheProvider>
-        </ReduxProvider>
+        </StoreProvider>
       </body>
     </html>
   );

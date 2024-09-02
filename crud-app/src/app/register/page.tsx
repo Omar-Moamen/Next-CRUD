@@ -1,9 +1,12 @@
 import RegisterForm from "@/components/forms/RegisterForm/RegisterForm";
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 const Register = () =>
 {
    return (
-      <RegisterForm />
+      <ProtectedRoute>
+         <RegisterForm />
+      </ProtectedRoute>
    )
 }
 

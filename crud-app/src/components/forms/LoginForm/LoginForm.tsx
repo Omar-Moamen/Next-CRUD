@@ -12,8 +12,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import PasswordInput from "../PasswordInput/PasswordInput";
 import ErrorFeedback from "@/components/feedback/ErrorFeedback/ErrorFeedback";
 import { Alert, Box, Button, CircularProgress, TextField } from "@mui/material"
-import Link from "next/link";
 import Form from "../Form/Form";
+import Link from "next/link";
 // Styles
 import styles from './styles.module.css';
 

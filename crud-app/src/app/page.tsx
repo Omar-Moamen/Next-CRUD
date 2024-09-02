@@ -2,8 +2,11 @@ import Home from "./home/page"
 
 const App = () =>
 {
+
    return (
-      <Home />
+      <>
+         <Home />
+      </>
    )
 }
 

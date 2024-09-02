@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/rtkHooks"
 import { actGetSingleProduct } from "@/store/products/act/actGetSingleProduct";
 import { cleanProductInfo } from "@/store/products/productsSlice";
@@ -13,18 +13,20 @@ const useProductDetails = () =>
    const dispatch = useAppDispatch();
    const { token } = useAppSelector(state => state.auth)
    const { productInfo, loading, error } = useAppSelector(state => state.products);
+   const clearRef = useRef(false);
 
    const { productId } = useParams<TProductId>();
 
    useEffect(() =>
    {
-      if (token && productId)
+      if (token && productId && clearRef.current === false)
       {
          const productIdWithToken = { _id: productId, token, }
          dispatch(actGetSingleProduct(productIdWithToken))
 
          return () =>
          {
+            clearRef.current = true;
             dispatch(cleanProductInfo());
          }
       }

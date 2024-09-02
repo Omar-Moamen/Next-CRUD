@@ -34,24 +34,49 @@ const rootReducer = combineReducers({
    auth: persistReducer(authPersistConfig, auth),
 })
 
-
-const store = configureStore({
-   reducer: rootReducer,
-   middleware: (getDefaultMiddleware) => (
-      getDefaultMiddleware({
-         serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+const makeConfiguredStore = () =>
+{
+   return (
+      configureStore({
+         reducer: {
+            auth,
+            products,
          }
-      }))
+      })
+   )
+}
 
-})
+const makeStore = () =>
+{
+   const isServer = typeof window === 'undefined';
+
+   if (isServer)
+   {
+      return makeConfiguredStore()
+   };
+
+   return (
+      configureStore({
+         reducer: rootReducer,
+         middleware: (getDefaultMiddleware) => (
+            getDefaultMiddleware({
+               serializableCheck: {
+                  ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+               }
+            }))
+      })
+   )
+}
+
+const store = makeStore();
 
 export const persistor = persistStore(store);
 
 
+// Infer the `RootState` and `AppDispatch` // Infer the type of makeStore
+export type AppStore = ReturnType<typeof makeStore>
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<AppStore['getState']>
+export type AppDispatch = AppStore['dispatch']
 
 export default store;
