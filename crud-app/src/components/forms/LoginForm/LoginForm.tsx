@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -6,7 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/components/validations/loginSchema";
 import useAuthInfo from "@/components/hooks/useAuthInfo";
-import { actAuthLogin } from "@/store/auth/act/actAuthLogin";
+import { authLogin } from "@/store/auth/actions/authLogin";
 import { clearAuthUI } from "@/store/auth/authSlice";
 import { useRouter, useSearchParams } from "next/navigation";
 import PasswordInput from "../PasswordInput/PasswordInput";
@@ -50,7 +50,7 @@ const LoginForm = () =>
    // Handlers
    const onSubmit: SubmitHandler<TLoginInputs> = async (formData) =>
    {
-      dispatch(actAuthLogin(formData))
+      dispatch(authLogin(formData))
          .unwrap()
          .then(() => router.push('/'))
          .catch(err => err = error)

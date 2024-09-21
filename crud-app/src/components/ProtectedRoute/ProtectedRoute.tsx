@@ -8,11 +8,15 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) =>
    const { token } = useAuthInfo();
    const pathname = usePathname();
 
-   if (pathname === "/profile" && !token)
+   if ((pathname === "/profile" || pathname === "/") && !token)
+   {
       return permanentRedirect("/login?message=login_required");
+   }
 
    if ((pathname === "/login" || pathname === "/register") && token)
+   {
       return permanentRedirect("/");
+   }
 
    return (
       <>

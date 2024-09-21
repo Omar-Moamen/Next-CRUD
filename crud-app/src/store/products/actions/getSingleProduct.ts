@@ -5,7 +5,7 @@ import { TProductIdWithToken } from "../../../types/shared";
 
 
 
-export const actGetSingleProduct = createAsyncThunk("products/actGetSingleProduct",
+export const getSingleProduct = createAsyncThunk("products/getSingleProduct",
    async (productIdWithToken: TProductIdWithToken, thunkAPI) =>
    {
       const { _id, token } = productIdWithToken;

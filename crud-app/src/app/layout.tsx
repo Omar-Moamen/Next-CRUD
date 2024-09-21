@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "@/components/Header/Header";
 import StoreProvider from "@/components/StoreProvider/StoreProvider";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
@@ -7,8 +6,6 @@ import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "@/theme/theme";
 // Styles
 import "../styles/globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "CRUD-App",
@@ -20,13 +17,13 @@ export const metadata: Metadata = {
 
 
 
-function RootLayout({ children }: Readonly<{ children: React.ReactNode }>)
+function RootLayout({ children, modal }:
+  Readonly<{ children: React.ReactNode, modal: React.ReactNode }>)
 {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-
+      <body>
         <StoreProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
@@ -35,6 +32,8 @@ function RootLayout({ children }: Readonly<{ children: React.ReactNode }>)
               <Box mt="30px">
                 {children}
               </Box>
+              {modal}
+              <div id="modal-root"></div>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </StoreProvider>

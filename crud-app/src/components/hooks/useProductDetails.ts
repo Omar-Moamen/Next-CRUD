@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/rtkHooks"
-import { actGetSingleProduct } from "@/store/products/act/actGetSingleProduct";
+import { getSingleProduct } from "@/store/products/actions/getSingleProduct";
 import { cleanProductInfo } from "@/store/products/productsSlice";
 import { useParams } from "next/navigation";
 
@@ -22,7 +22,7 @@ const useProductDetails = () =>
       if (token && productId && clearRef.current === false)
       {
          const productIdWithToken = { _id: productId, token, }
-         dispatch(actGetSingleProduct(productIdWithToken))
+         dispatch(getSingleProduct(productIdWithToken))
 
          return () =>
          {

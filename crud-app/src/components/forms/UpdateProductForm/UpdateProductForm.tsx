@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form"
-import { actUpdateProduct } from "../../../store/products/act/actUpdateProduct";
+import { updateProduct } from "../../../store/products/actions/updateProduct";
 import useProductDetails from "@/components/hooks/useProductDetails";
 import { useEffect } from "react";
 import ErrorFeedback from "../../feedback/ErrorFeedback/ErrorFeedback";
@@ -50,7 +50,7 @@ const UpdateProductForm = () =>
             _id: productInfo["_id"],
             token,
          };
-         dispatch(actUpdateProduct(productWithToken))
+         dispatch(updateProduct(productWithToken))
             .unwrap()
             .then(() => reset())
             .then(() => router.push('/'))
@@ -98,7 +98,7 @@ const UpdateProductForm = () =>
                variant="outlined"
             >
                {
-                  loading === "pending" &&
+                  loading &&
                   <CircularProgress sx={{ mr: '10px' }} size={20} />
                }
                Submit

@@ -3,7 +3,7 @@
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 import ProductsList from "@/components/ProductsList/ProductsList";
 import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
-import { actGetAllProducts } from "@/store/products/act/actGetAllProducts";
+import { getAllProducts } from "@/store/products/actions/getAllProducts";
 import { useEffect, useRef } from "react";
 import Loading from "@/components/feedback/Loading/Loading";
 import AddProductModal from "@/components/AddProductModal/AddProductModal";
@@ -24,7 +24,7 @@ const ProductsTable = () =>
    {
       if (token && clearRef.current === false)
       {
-         dispatch(actGetAllProducts(token));
+         dispatch(getAllProducts(token));
       }
 
       return () =>

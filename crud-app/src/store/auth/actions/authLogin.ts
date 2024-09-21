@@ -8,7 +8,7 @@ type TResponse = {
    message: string;
 }
 
-export const actAuthLogin = createAsyncThunk("auth/actAuthLogin",
+export const authLogin = createAsyncThunk("auth/authLogin",
    async (formData: TLoginData, thunkAPI) =>
    {
       const { rejectWithValue } = thunkAPI;

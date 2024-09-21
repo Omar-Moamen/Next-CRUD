@@ -12,12 +12,12 @@ type TLoadingProps = {
 const Loading = ({ children, status, error, size = "200px" }: TLoadingProps) =>
 {
 
-   if (status === "pending")
+   if (status === true)
    {
       return <LottieHandler type="loading" width={size} />
    }
 
-   if (status === "failed" || error)
+   if (error)
    {
       return <ErrorFeedback error={error} />
    }

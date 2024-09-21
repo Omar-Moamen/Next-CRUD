@@ -1,14 +1,14 @@
-'use client'
-// import { actDeleteProduct } from "../../store/products/act/actDeleteProduct";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
+import { deleteProduct } from "@/store/products/actions/deleteProduct";
 import { TProduct } from "@/types/product";
 import TooltipButton from "../TooltipButton/TooltipButton";
 import { TableCell, TableRow } from "@mui/material";
+import { grey } from "@mui/material/colors";
 // Styles
 import styles from './styles.module.css';
-import { useRouter } from "next/navigation";
-import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
-import { actDeleteProduct } from "@/store/products/act/actDeleteProduct";
-import { grey } from "@mui/material/colors";
 
 type TProps = TProduct & { idx?: number };
 
@@ -56,7 +56,7 @@ const Product = ({ _id, title, price, quantity, idx }: TProps) =>
                      placement="top"
                      disabled={token && user && user.role === "SuperAdmin" ? false : true}
                      color="error"
-                     onClick={() => dispatch(actDeleteProduct({ _id, token }))}
+                     onClick={() => dispatch(deleteProduct({ _id, token }))}
                   />
                </div>
             </TableCell>

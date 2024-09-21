@@ -7,7 +7,7 @@ type TResponse = {
    product: TProduct[]
 };
 
-export const actGetAllProducts = createAsyncThunk('products/actGetAllProducts',
+export const getAllProducts = createAsyncThunk('products/getAllProducts',
    async (token: string, thunkAPI) =>
    {
       const { rejectWithValue } = thunkAPI;

@@ -3,7 +3,7 @@ import axios from "axios";
 import axiosErrorHandler from "@/components/utils/axiosErrorHandler";
 import { TRegisterData } from "../../../types/shared";
 
-export const actAuthRegister = createAsyncThunk('auth/actAuthRegister',
+export const authRegister = createAsyncThunk('auth/authRegister',
    async (formData: TRegisterData, thunkAPI) =>
    {
       const { rejectWithValue } = thunkAPI;

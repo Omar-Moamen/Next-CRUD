@@ -76,6 +76,59 @@ body {
    opacity: 0.4;
 }
 
+.modal-backdrop {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.7);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+}
+
+.modal {
+   position: relative;
+   width: fit-content;
+   max-width: 500px;
+   max-height: 500px;
+   border: none;
+   border-radius: 6px;
+   background-color: transparent;
+   padding: 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 48px;
+}
+
+.close-button {
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 28px;
+   height: 28px;
+   border: none;
+   border-radius: 0 0 0 6px;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 500;
+   font-size: 24px;
+}
+
+.close-button:hover {
+   background-color: #eee;
+}
+
+.close-button:after {
+   content: 'x';
+   color: black;
+}
+
 /* @Keyframes */
 @keyframes spin {
    from {

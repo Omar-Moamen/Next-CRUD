@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { z } from 'zod';
 import { signUpSchema } from '@/components/validations/signUpSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { actAuthRegister } from '../../../store/auth/act/actAuthRegister';
+import { authRegister } from '../../../store/auth/actions/authRegister';
 import useAuthInfo from '@/components/hooks/useAuthInfo';
 import { clearAuthUI } from '@/store/auth/authSlice';
 import { useRouter } from 'next/navigation';
@@ -59,7 +59,7 @@ const RegisterForm = () =>
          role,
          password
       };
-      dispatch(actAuthRegister(userData))
+      dispatch(authRegister(userData))
          .unwrap()
          .then(() => router.push('/login?message=account_created'))
          // err = error to avoid crashing the app.. already handled error below
@@ -148,9 +148,9 @@ const RegisterForm = () =>
                sx={{ width: { xs: "100%", sm: "fit-content" } }}
                variant="outlined"
                size="large"
-               disabled={!!(loading === "pending")}
+               disabled={!!(loading)}
             >
-               {loading === "pending" && <CircularProgress sx={{ mr: "10px" }} size={20} />}
+               {loading && <CircularProgress sx={{ mr: "10px" }} size={20} />}
                Submit
             </Button>
             <Button
@@ -158,7 +158,7 @@ const RegisterForm = () =>
                variant="outlined"
                color="secondary"
                size="large"
-               disabled={!!(loading === "pending")}
+               disabled={!!(loading)}
                onClick={() => reset()}
             >
                Reset

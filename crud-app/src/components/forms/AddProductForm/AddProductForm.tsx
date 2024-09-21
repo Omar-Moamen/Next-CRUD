@@ -2,7 +2,7 @@
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAppDispatch, useAppSelector } from "@/store/rtkHooks";
-import { actAddProduct } from "@/store/products/act/actAddProduct";
+import { addProduct } from "@/store/products/actions/addProduct";
 import { TProduct } from "@/types/product";
 import ErrorFeedback from "@/components/feedback/ErrorFeedback/ErrorFeedback";
 import { Button, TextField } from "@mui/material";
@@ -34,7 +34,7 @@ const AddProductForm = ({ setOpenModal }: TProps) =>
          token,
       };
 
-      dispatch(actAddProduct(productWithToken))
+      dispatch(addProduct(productWithToken))
          .unwrap()
          .then(() => reset())
          .then(() => setOpenModal(false))
@@ -77,7 +77,7 @@ const AddProductForm = ({ setOpenModal }: TProps) =>
             type="submit"
             variant="outlined"
          >
-            {loading === "pending" ? "Submitting..." : "Submit"}
+            {loading ? "Submitting..." : "Submit"}
          </Button>
 
          <ErrorFeedback error={error} />

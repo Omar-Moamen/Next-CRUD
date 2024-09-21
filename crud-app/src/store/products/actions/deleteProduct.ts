@@ -3,7 +3,7 @@ import axios from "axios";
 import axiosErrorHandler from "@/components/utils/axiosErrorHandler";
 import { TProductIdWithToken } from "../../../types/shared";
 
-export const actDeleteProduct = createAsyncThunk('products/actDeleteProduct',
+export const deleteProduct = createAsyncThunk('products/deleteProduct',
    async (productIdWithToken: TProductIdWithToken, thunkAPI) =>
    {
       const { _id, token } = productIdWithToken;
