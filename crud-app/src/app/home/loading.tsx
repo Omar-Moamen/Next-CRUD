@@ -2,10 +2,10 @@
 
 import LottieHandler from "@/components/feedback/LottieHandler/LottieHandler";
 
-const loading = () =>
+const ProductsLoading = () =>
 {
 
    return <LottieHandler type="loading" />
 }
 
-export default loading
+export default ProductsLoading;
